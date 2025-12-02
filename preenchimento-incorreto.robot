@@ -9,6 +9,7 @@ ${CAMPO_CARD}      id:form-botao
 ${NOME_ERRO}       id:form-nome-erro
 ${CARGO_ERRO}      id:form-cargo-erro
 ${TIME_ERRO}       id:form-times-erro
+
 *** Test Cases ***
 Verificar se quando um campo obrigatório não for preenchido corretamente, o sistema exibe mensagem de erro
     Dado que eu clique no botão criar card
@@ -19,7 +20,7 @@ Verificar se quando um campo obrigatório não for preenchido corretamente, o si
 Dado que eu clique no botão criar card
     Sleep    5s
     Click Element     ${CAMPO_CARD}
-    
+
 Então sistema exibe mensagem de erro
     Element Should Be Visible    ${NOME_ERRO}
     Element Should Be Visible    ${CARGO_ERRO}

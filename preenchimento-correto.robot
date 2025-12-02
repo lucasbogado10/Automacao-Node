@@ -55,7 +55,7 @@ E clique no botão criar card
     Click Element    ${CAMPO_CARD}
 
 
- Então o sistema cria um novo card com as informações passadas no formulário
+Então o sistema cria um novo card com as informações passadas no formulário
     Element Should Be Visible    class:colaborador
     Scroll Element Into View    class:colaborador
     Sleep    3s
