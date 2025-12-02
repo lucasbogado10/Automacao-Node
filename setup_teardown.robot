@@ -12,4 +12,3 @@ Dado que eu acesse o Organo e maximizo a tela
 Fechar navegador                                                        
     Close Browser
 
-##testando git
