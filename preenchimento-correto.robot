@@ -1,8 +1,14 @@
 *** Settings *** 
 Library          SeleniumLibrary
+
+Library          FakerLibrary    locale=pt_BR
+
 Resource         setup_teardown.robot                                                     ##linkando o arquivo setup teardown com esse para definir padroes
+
 Test Setup       Dado que eu acesse o Organo e maximizo a tela                            ## Define que o Setup Acessar o organo acontecerá no inicio de cada teste
+
 Test Teardown    Fechar navegador                                                         ## Define que o Tear Down Fechar navegador ocorre no final de cada teste
+
 *** Variables ***
 ${CAMPO_NOME}      id:form-nome
 ${CAMPO_CARGO}     id:form-cargo
@@ -35,9 +41,12 @@ Verificar criação de mais de um card preenchendo os campos corretamente
 *** Keywords ***
 ##preenchimento do formulário com os dados corretos
 Dado que eu preencha os campos do formulário corretamente
-    Input Text       ${CAMPO_NOME}      Lucas
-    Input Text       ${CAMPO_CARGO}     QA
-    Input Text       ${CAMPO_IMAGEM}    https://picsum.photos/200/300
+    ${Nome}          FakerLibrary.First Name
+    Input Text       ${CAMPO_NOME}      ${Nome}
+    ${Cargo}         FakerLibrary.Job
+    Input Text       ${CAMPO_CARGO}     ${Cargo}
+    ${Imagem}        FakerLibrary.Image URL         
+    Input Text       ${CAMPO_IMAGEM}    ${Imagem}
     Click Element    ${CAMPO_TIME}
     Click Element    ${PROGRAMACAO}  
 
