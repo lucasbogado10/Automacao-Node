@@ -19,24 +19,43 @@ ${INOVACAO}        //option[contains(.,'Inovação')]
 
 
 *** Test Cases ***
+##um usuário 
 Verificar preenchimento do formulário + criação do card
     Dado que eu preencha os campos do formulário corretamente
     E clique no botão criar card
     Então o sistema cria um novo card com as informações passadas no formulário 
 
+##multiplos usuários
+Verificar criação de mais de um card preenchendo os campos corretamente
+    Dado que eu preencha os campos do formulário corretamente
+    E clique no botão criar card
+    Então identificar 3 cards no time esperado
 
+    
 *** Keywords ***
+##preenchimento do formulário com os dados corretos
 Dado que eu preencha os campos do formulário corretamente
     Input Text       ${CAMPO_NOME}      Lucas
     Input Text       ${CAMPO_CARGO}     QA
     Input Text       ${CAMPO_IMAGEM}    https://picsum.photos/200/300
     Click Element    ${CAMPO_TIME}
     Click Element    ${PROGRAMACAO}  
-    Sleep    10s  
+
+
 E clique no botão criar card
     Click Element    ${CAMPO_CARD}
+
+
  Então o sistema cria um novo card com as informações passadas no formulário
     Element Should Be Visible    class:colaborador
     Scroll Element Into View    class:colaborador
-    Sleep    5s
+    Sleep    3s
 
+
+##criando um for para repetir a criação de multiplos usuários 
+Então identificar 3 cards no time esperado
+    FOR    ${i}    IN RANGE    1    3
+        Dado que eu preencha os campos do formulário corretamente
+        E clique no botão criar card
+    END
+    Sleep    5s
